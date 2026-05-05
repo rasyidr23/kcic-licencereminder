@@ -18,6 +18,10 @@
             <td>{{ $licence->name }}</td>
         </tr>
         <tr>
+            <th style="background-color: #f2f2f2; text-align: left;">Company Name (Vendor)</th>
+            <td>{{ $licence->vendor_name }}</td>
+        </tr>
+        <tr>
             <th style="background-color: #f2f2f2; text-align: left;">Tanggal Expired</th>
             <td style="{{ $period == 'Sudah Expired' ? 'color: red; font-weight: bold;' : '' }}">
                 {{ \Carbon\Carbon::parse($licence->period_end)->format('d F Y') }}
@@ -26,6 +30,13 @@
     </table>
 
     <p>Mohon segera lakukan pengecekan dan perpanjangan jika diperlukan.</p>
-    <p>Terima kasih.</p>
+    
+    <p style="margin-top: 20px;">
+        <a href="{{ route('licences.show', $licence->id) }}" style="background-color: #0d6efd; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; font-weight: bold;">
+            Lihat Detail Lisensi
+        </a>
+    </p>
+
+    <p style="margin-top: 30px;">Terima kasih.</p>
 </body>
 </html>

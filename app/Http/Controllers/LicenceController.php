@@ -156,7 +156,7 @@ class LicenceController extends Controller
             ]);
         }
 
-        return redirect()->route('licences.index')
+        return redirect()->back()
             ->with('success', 'Licence updated successfully.');
     }
 
