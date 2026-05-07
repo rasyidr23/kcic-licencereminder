@@ -18,7 +18,6 @@ return new class extends Migration
             $table->date('period_start')->nullable();
             $table->date('period_end')->nullable();
             $table->enum('licence_type', ['Perpetual', 'Subscription'])->default('Subscription');
-            $table->date('expired_date')->nullable();
             $table->json('reminder_days')->nullable();
             $table->text('description')->nullable();
             $table->timestamps();

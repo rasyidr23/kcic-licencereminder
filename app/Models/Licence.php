@@ -12,7 +12,6 @@ class Licence extends Model
         'period_start',
         'period_end',
         'licence_type',
-        'expired_date',
         'reminder_days',
         'description',
     ];

@@ -44,11 +44,12 @@ class LicenceController extends Controller
         if ($sortBy && in_array($sortBy, $allowedSortColumns) && in_array($sortDir, ['asc', 'desc'])) {
             $query->orderBy($sortBy, $sortDir);
         } else {
-            $query->latest();
+            $query->orderBy('id', 'asc');
         }
 
         $licences = $query->paginate($perPage)->appends([
             'search' => $search, 
+            'per_page' => $perPage,
             'status' => $status,
             'sort_by' => $sortBy,
             'sort_dir' => $sortDir
@@ -78,7 +79,6 @@ class LicenceController extends Controller
         $data = $request->all();
         if ($data['licence_type'] === 'Perpetual') {
             $data['period_end'] = null;
-            $data['expired_date'] = null; // Just in case, to keep DB clean
             $data['reminder_days'] = null;
         } else {
             $reminders = $request->input('reminder_days', []);
@@ -126,7 +126,6 @@ class LicenceController extends Controller
         $data = $request->all();
         if ($data['licence_type'] === 'Perpetual') {
             $data['period_end'] = null;
-            $data['expired_date'] = null;
             $data['reminder_days'] = null;
         } else {
             $reminders = $request->input('reminder_days', []);
