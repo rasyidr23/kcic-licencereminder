@@ -16,6 +16,14 @@
             "dest": "/public/build/$1"
         },
         {
+            "src": "/favicon\\.(ico|png)",
+            "dest": "/public/favicon.$1"
+        },
+        {
+            "src": "/robots\\.txt",
+            "dest": "/public/robots.txt"
+        },
+        {
             "src": "/(.*)",
             "dest": "/api/index.php"
         }
