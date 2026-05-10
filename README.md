@@ -32,14 +32,13 @@ Berikut adalah panduan lengkap dari awal untuk menjalankan project ini di komput
 ### 1. Clone Repository (Unduh Kode)
 Buka terminal (atau Git Bash) dan jalankan perintah berikut untuk mengunduh project dari GitHub:
 ```bash
-git clone https://github.com/USERNAME/NAMA-REPOSITORY.git
+git clone https://github.com/rasyidr23/kcic-licencereminder.git
 ```
-*(Catatan: Ganti URL di atas dengan URL repositori GitHub Anda yang sebenarnya).*
 
 ### 2. Masuk ke Folder Project
 Setelah proses unduh selesai, masuk ke dalam folder project:
 ```bash
-cd nama-folder-project-anda
+cd kcic-licencereminder
 ```
 
 ### 3. Instalasi Dependensi PHP (Composer)
