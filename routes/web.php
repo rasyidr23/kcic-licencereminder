@@ -5,9 +5,9 @@ use App\Http\Controllers\LicenceController;
 
 use App\Http\Controllers\SettingController;
 
-Route::get('/', function () {
-    return redirect()->route('licences.index');
-});
+use App\Http\Controllers\DashboardController;
+
+Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
 Route::get('lang/{locale}', function ($locale) {
     if (in_array($locale, ['en', 'id'])) {

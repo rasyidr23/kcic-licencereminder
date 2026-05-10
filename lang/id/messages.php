@@ -65,4 +65,11 @@ return [
     'update_settings' => 'Simpan Pengaturan',
     'whoops' => 'Ups!',
     'problems_input' => 'Terjadi masalah dengan data yang Anda masukkan. Silakan coba lagi.',
+    'licence_management' => 'Manajemen Lisensi',
+    'email_settings' => 'Pengaturan Email',
+    'statistics_dashboard' => 'Dashboard Statistik',
+    'licence_status' => 'Status Lisensi',
+    'licence_types' => 'Tipe Lisensi',
+    'active_status' => 'Aktif',
+    'inactive_status' => 'Non-Aktif / Kedaluwarsa',
 ];

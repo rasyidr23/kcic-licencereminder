@@ -65,4 +65,11 @@ return [
     'update_settings' => 'Update Settings',
     'whoops' => 'Whoops!',
     'problems_input' => 'There were some problems with your input. Please try again.',
+    'licence_management' => 'Licence Management',
+    'email_settings' => 'Email Settings',
+    'statistics_dashboard' => 'Statistics Dashboard',
+    'licence_status' => 'Licence Status',
+    'licence_types' => 'Licence Types',
+    'active_status' => 'Active',
+    'inactive_status' => 'Inactive / Expired',
 ];
