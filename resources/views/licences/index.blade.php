@@ -62,54 +62,80 @@
         </div>
     </div>
 
-    <div class="card shadow-sm">
+    <div class="card shadow-sm border-0 rounded-4">
         <div class="card-body">
             <div class="table-responsive">
-                <table class="table table-bordered table-striped align-middle">
-                    <thead class="table-dark text-nowrap">
+                <table class="table table-hover align-middle mb-0">
+                    <thead class="table-light text-nowrap">
                     <tr>
-                        <th>
-                            <a href="{{ request()->fullUrlWithQuery(['sort_by' => 'id', 'sort_dir' => request('sort_by') == 'id' && request('sort_dir') == 'asc' ? 'desc' : 'asc']) }}" class="text-white text-decoration-none">
-                                {{ __('messages.id') }}
-                                @if(request('sort_by') == 'id') {!! request('sort_dir') == 'asc' ? '&uarr;' : '&darr;' !!} @else <span class="text-secondary">&uarr;&darr;</span> @endif
+                        <th class="border-0">
+                            <a href="{{ request()->fullUrlWithQuery(['sort_by' => 'id', 'sort_dir' => request('sort_by') == 'id' && request('sort_dir') == 'asc' ? 'desc' : 'asc']) }}" class="text-dark text-decoration-none d-flex align-items-center gap-1">
+                                {{ __('messages.no') }}
+                                @if(request('sort_by') == 'id')
+                                    <i class="fa-solid {{ request('sort_dir') == 'asc' ? 'fa-sort-up' : 'fa-sort-down' }} text-primary"></i>
+                                @else
+                                    <i class="fa-solid fa-sort text-muted opacity-50"></i>
+                                @endif
                             </a>
                         </th>
-                        <th>
-                            <a href="{{ request()->fullUrlWithQuery(['sort_by' => 'name', 'sort_dir' => request('sort_by') == 'name' && request('sort_dir') == 'asc' ? 'desc' : 'asc']) }}" class="text-white text-decoration-none">
+                        <th class="border-0">
+                            <a href="{{ request()->fullUrlWithQuery(['sort_by' => 'name', 'sort_dir' => request('sort_by') == 'name' && request('sort_dir') == 'asc' ? 'desc' : 'asc']) }}" class="text-dark text-decoration-none d-flex align-items-center gap-1">
                                 {{ __('messages.name') }}
-                                @if(request('sort_by') == 'name') {!! request('sort_dir') == 'asc' ? '&uarr;' : '&darr;' !!} @else <span class="text-secondary">&uarr;&darr;</span> @endif
+                                @if(request('sort_by') == 'name')
+                                    <i class="fa-solid {{ request('sort_dir') == 'asc' ? 'fa-sort-up' : 'fa-sort-down' }} text-primary"></i>
+                                @else
+                                    <i class="fa-solid fa-sort text-muted opacity-50"></i>
+                                @endif
                             </a>
                         </th>
-                        <th>
-                            <a href="{{ request()->fullUrlWithQuery(['sort_by' => 'vendor_name', 'sort_dir' => request('sort_by') == 'vendor_name' && request('sort_dir') == 'asc' ? 'desc' : 'asc']) }}" class="text-white text-decoration-none">
+                        <th class="border-0">
+                            <a href="{{ request()->fullUrlWithQuery(['sort_by' => 'vendor_name', 'sort_dir' => request('sort_by') == 'vendor_name' && request('sort_dir') == 'asc' ? 'desc' : 'asc']) }}" class="text-dark text-decoration-none d-flex align-items-center gap-1">
                                 {{ __('messages.vendor_name') }}
-                                @if(request('sort_by') == 'vendor_name') {!! request('sort_dir') == 'asc' ? '&uarr;' : '&darr;' !!} @else <span class="text-secondary">&uarr;&darr;</span> @endif
+                                @if(request('sort_by') == 'vendor_name')
+                                    <i class="fa-solid {{ request('sort_dir') == 'asc' ? 'fa-sort-up' : 'fa-sort-down' }} text-primary"></i>
+                                @else
+                                    <i class="fa-solid fa-sort text-muted opacity-50"></i>
+                                @endif
                             </a>
                         </th>
-                        <th>
-                            <a href="{{ request()->fullUrlWithQuery(['sort_by' => 'licence_type', 'sort_dir' => request('sort_by') == 'licence_type' && request('sort_dir') == 'asc' ? 'desc' : 'asc']) }}" class="text-white text-decoration-none">
+                        <th class="border-0">
+                            <a href="{{ request()->fullUrlWithQuery(['sort_by' => 'licence_type', 'sort_dir' => request('sort_by') == 'licence_type' && request('sort_dir') == 'asc' ? 'desc' : 'asc']) }}" class="text-dark text-decoration-none d-flex align-items-center gap-1">
                                 {{ __('messages.type') }}
-                                @if(request('sort_by') == 'licence_type') {!! request('sort_dir') == 'asc' ? '&uarr;' : '&darr;' !!} @else <span class="text-secondary">&uarr;&darr;</span> @endif
+                                @if(request('sort_by') == 'licence_type')
+                                    <i class="fa-solid {{ request('sort_dir') == 'asc' ? 'fa-sort-up' : 'fa-sort-down' }} text-primary"></i>
+                                @else
+                                    <i class="fa-solid fa-sort text-muted opacity-50"></i>
+                                @endif
                             </a>
                         </th>
-                        <th>{{ __('messages.status') }}</th>
-                        <th>
-                            <a href="{{ request()->fullUrlWithQuery(['sort_by' => 'period_end', 'sort_dir' => request('sort_by') == 'period_end' && request('sort_dir') == 'asc' ? 'desc' : 'asc']) }}" class="text-white text-decoration-none">
+                        <th class="border-0">{{ __('messages.status') }}</th>
+                        <th class="border-0">
+                            <a href="{{ request()->fullUrlWithQuery(['sort_by' => 'period_end', 'sort_dir' => request('sort_by') == 'period_end' && request('sort_dir') == 'asc' ? 'desc' : 'asc']) }}" class="text-dark text-decoration-none d-flex align-items-center gap-1">
                                 {{ __('messages.expired_date') }}
-                                @if(request('sort_by') == 'period_end') {!! request('sort_dir') == 'asc' ? '&uarr;' : '&darr;' !!} @else <span class="text-secondary">&uarr;&darr;</span> @endif
+                                @if(request('sort_by') == 'period_end')
+                                    <i class="fa-solid {{ request('sort_dir') == 'asc' ? 'fa-sort-up' : 'fa-sort-down' }} text-primary"></i>
+                                @else
+                                    <i class="fa-solid fa-sort text-muted opacity-50"></i>
+                                @endif
                             </a>
                         </th>
-                        <th width="280px">{{ __('messages.action') }}</th>
+                        <th class="border-0 text-center" width="150px">{{ __('messages.action') }}</th>
                     </tr>
                     </thead>
                     <tbody>
                     @forelse ($licences as $licence)
                         <tr>
-                            <td>{{ $licence->id }}</td>
+                            <td>
+                                @if(request('sort_by') == 'id' && request('sort_dir') == 'desc')
+                                    {{ $licences->total() - ($licences->firstItem() - 1) - $loop->index }}
+                                @else
+                                    {{ $licences->firstItem() + $loop->index }}
+                                @endif
+                            </td>
                             <td>{{ $licence->name }}</td>
                             <td>{{ $licence->vendor_name ?? '-' }}</td>
                             <td>
-                                <span class="badge {{ $licence->licence_type == 'Perpetual' ? 'bg-success' : 'bg-primary' }}">
+                                <span class="badge rounded-pill {{ $licence->licence_type == 'Perpetual' ? 'bg-success' : 'bg-primary' }}">
                                     {{ $licence->licence_type }}
                                 </span>
                             </td>
@@ -123,115 +149,104 @@
                                     }
                                 @endphp
                                 @if($isActive)
-                                    <span class="badge bg-success">{{ __('messages.active') }}</span>
+                                    <span class="badge rounded-pill bg-success-subtle text-success border border-success-subtle"><i class="fa-solid fa-circle-check"></i> {{ __('messages.active') }}</span>
                                 @else
-                                    <span class="badge bg-danger">{{ __('messages.inactive') }}</span>
+                                    <span class="badge rounded-pill bg-danger-subtle text-danger border border-danger-subtle"><i class="fa-solid fa-circle-xmark"></i> {{ __('messages.inactive') }}</span>
                                 @endif
                             </td>
                             <td>
                                 @if($licence->licence_type == 'Perpetual')
-                                    <span class="text-muted">{{ __('messages.permanent') }}</span>
+                                    <span class="text-muted fst-italic">{{ __('messages.permanent') }}</span>
                                 @else
                                     {{ $licence->period_end ? \Carbon\Carbon::parse($licence->period_end)->format('d M Y') : '-' }}
                                 @endif
                             </td>
-                            <td>
-                                <form action="{{ route('licences.destroy',$licence->id) }}" method="POST" class="mb-0 delete-form">
-                                    <a class="btn btn-info btn-sm text-white" href="{{ route('licences.show',$licence->id) }}">{{ __('messages.show') }}</a>
-                                    <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#editModal{{ $licence->id }}">
-                                        {{ __('messages.edit') }}
+                            <td class="text-center">
+                                <form action="{{ route('licences.destroy',$licence->id) }}" method="POST" class="mb-0 delete-form d-flex justify-content-center gap-1">
+                                    <a class="btn btn-outline-info btn-sm" href="{{ route('licences.show',$licence->id) }}" title="{{ __('messages.show') }}">
+                                        <i class="fa-solid fa-eye"></i>
+                                    </a>
+                                    <button type="button" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#editModal{{ $licence->id }}" title="{{ __('messages.edit') }}">
+                                        <i class="fa-solid fa-pen"></i>
                                     </button>
 
                                     @csrf
                                     @method('DELETE')
 
-                                    <button type="button" class="btn btn-danger btn-sm btn-delete">{{ __('messages.delete') }}</button>
+                                    <button type="button" class="btn btn-outline-danger btn-sm btn-delete" title="{{ __('messages.delete') }}">
+                                        <i class="fa-solid fa-trash"></i>
+                                    </button>
                                 </form>
                             </td>
                         </tr>
 
                         <!-- Edit Modal -->
                         <div class="modal fade" id="editModal{{ $licence->id }}" tabindex="-1" aria-labelledby="editModalLabel{{ $licence->id }}" aria-hidden="true">
-                            <div class="modal-dialog modal-lg">
-                                <div class="modal-content">
+                            <div class="modal-dialog modal-lg modal-dialog-centered">
+                                <div class="modal-content border-0 shadow rounded-4">
                                     <form action="{{ route('licences.update', $licence->id) }}" method="POST">
                                         @csrf
                                         @method('PUT')
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="editModalLabel{{ $licence->id }}">{{ __('messages.edit_modal_title') }}</h5>
+                                        <div class="modal-header border-0 pb-0">
+                                            <h5 class="modal-title fw-bold" id="editModalLabel{{ $licence->id }}"><i class="fa-solid fa-pen text-primary"></i> {{ __('messages.edit_modal_title') }}</h5>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
-                                        <div class="modal-body text-start">
-                                            <div class="row">
-                                                <div class="col-xs-12 col-sm-6 col-md-6 mb-3">
-                                                    <div class="form-group">
-                                                        <strong>{{ __('messages.licence_name') }}:</strong>
-                                                        <input type="text" name="name" value="{{ $licence->name }}" class="form-control" placeholder="{{ __('messages.licence_name') }}">
-                                                    </div>
+                                        <div class="modal-body text-start p-4">
+                                            <div class="row g-3">
+                                                <div class="col-md-6">
+                                                    <label class="form-label fw-bold">{{ __('messages.licence_name') }}</label>
+                                                    <input type="text" name="name" value="{{ $licence->name }}" class="form-control bg-light" placeholder="{{ __('messages.licence_name') }}">
                                                 </div>
-                                                <div class="col-xs-12 col-sm-6 col-md-6 mb-3">
-                                                    <div class="form-group">
-                                                        <strong>{{ __('messages.vendor_name') }}:</strong>
-                                                        <input type="text" name="vendor_name" value="{{ $licence->vendor_name }}" class="form-control" placeholder="{{ __('messages.vendor_name') }}">
-                                                    </div>
+                                                <div class="col-md-6">
+                                                    <label class="form-label fw-bold">{{ __('messages.vendor_name') }}</label>
+                                                    <input type="text" name="vendor_name" value="{{ $licence->vendor_name }}" class="form-control bg-light" placeholder="{{ __('messages.vendor_name') }}">
                                                 </div>
-                                                <div class="col-xs-12 col-sm-6 col-md-6 mb-3">
-                                                    <div class="form-group">
-                                                        <strong>{{ __('messages.licence_type') }}:</strong>
-                                                        <select name="licence_type" class="form-select edit-licence-type" data-id="{{ $licence->id }}">
-                                                            <option value="Subscription" {{ $licence->licence_type == 'Subscription' ? 'selected' : '' }}>{{ __('messages.subscription') }}</option>
-                                                            <option value="Perpetual" {{ $licence->licence_type == 'Perpetual' ? 'selected' : '' }}>{{ __('messages.perpetual') }}</option>
-                                                        </select>
-                                                    </div>
+                                                <div class="col-md-6">
+                                                    <label class="form-label fw-bold">{{ __('messages.licence_type') }}</label>
+                                                    <select name="licence_type" class="form-select bg-light edit-licence-type" data-id="{{ $licence->id }}">
+                                                        <option value="Subscription" {{ $licence->licence_type == 'Subscription' ? 'selected' : '' }}>{{ __('messages.subscription') }}</option>
+                                                        <option value="Perpetual" {{ $licence->licence_type == 'Perpetual' ? 'selected' : '' }}>{{ __('messages.perpetual') }}</option>
+                                                    </select>
                                                 </div>
-
-                                                <div class="col-xs-12 col-sm-6 col-md-6 mb-3">
-                                                    <div class="form-group">
-                                                        <strong>{{ __('messages.period_start') }}:</strong>
-                                                        <input type="date" name="period_start" value="{{ $licence->period_start ? \Carbon\Carbon::parse($licence->period_start)->format('Y-m-d') : '' }}" class="form-control">
-                                                    </div>
+                                                <div class="col-md-6">
+                                                    <label class="form-label fw-bold">{{ __('messages.period_start') }}</label>
+                                                    <input type="date" name="period_start" value="{{ $licence->period_start ? \Carbon\Carbon::parse($licence->period_start)->format('Y-m-d') : '' }}" class="form-control bg-light">
                                                 </div>
-                                                <div class="col-xs-12 col-sm-6 col-md-6 mb-3 edit-period-end-wrapper-{{ $licence->id }}">
-                                                    <div class="form-group">
-                                                        <strong>{{ __('messages.period_end') }}:</strong>
-                                                        <input type="date" name="period_end" value="{{ $licence->period_end ? \Carbon\Carbon::parse($licence->period_end)->format('Y-m-d') : '' }}" class="form-control">
-                                                    </div>
+                                                <div class="col-md-6 edit-period-end-wrapper-{{ $licence->id }}">
+                                                    <label class="form-label fw-bold">{{ __('messages.period_end') }}</label>
+                                                    <input type="date" name="period_end" value="{{ $licence->period_end ? \Carbon\Carbon::parse($licence->period_end)->format('Y-m-d') : '' }}" class="form-control bg-light">
                                                 </div>
-                                                <div class="col-xs-12 col-sm-12 col-md-12 mb-3 edit-reminder-wrapper-{{ $licence->id }}">
-                                                    <div class="form-group">
-                                                        <strong>{{ __('messages.custom_reminder') }}:</strong><br>
-                                                        @php
-                                                            $reminders = is_array($licence->reminder_days) ? $licence->reminder_days : [];
-                                                        @endphp
-                                                        <div class="form-check form-check-inline">
+                                                <div class="col-12 edit-reminder-wrapper-{{ $licence->id }}">
+                                                    <label class="form-label fw-bold">{{ __('messages.custom_reminder') }}</label>
+                                                    <div class="d-flex flex-wrap gap-3 p-3 bg-light rounded-3 border">
+                                                        @php $reminders = is_array($licence->reminder_days) ? $licence->reminder_days : []; @endphp
+                                                        <div class="form-check">
                                                             <input class="form-check-input" type="checkbox" name="reminder_days[]" value="3_months" id="rem1_{{ $licence->id }}" {{ in_array('3_months', $reminders) ? 'checked' : '' }}>
                                                             <label class="form-check-label" for="rem1_{{ $licence->id }}">{{ __('messages.3_months') }}</label>
                                                         </div>
-                                                        <div class="form-check form-check-inline">
+                                                        <div class="form-check">
                                                             <input class="form-check-input" type="checkbox" name="reminder_days[]" value="2_months" id="rem2_{{ $licence->id }}" {{ in_array('2_months', $reminders) ? 'checked' : '' }}>
                                                             <label class="form-check-label" for="rem2_{{ $licence->id }}">{{ __('messages.2_months') }}</label>
                                                         </div>
-                                                        <div class="form-check form-check-inline">
+                                                        <div class="form-check">
                                                             <input class="form-check-input" type="checkbox" name="reminder_days[]" value="1_month" id="rem3_{{ $licence->id }}" {{ in_array('1_month', $reminders) ? 'checked' : '' }}>
                                                             <label class="form-check-label" for="rem3_{{ $licence->id }}">{{ __('messages.1_month') }}</label>
                                                         </div>
-                                                        <div class="form-check form-check-inline">
+                                                        <div class="form-check">
                                                             <input class="form-check-input" type="checkbox" name="reminder_days[]" value="2_weeks" id="rem4_{{ $licence->id }}" {{ in_array('2_weeks', $reminders) ? 'checked' : '' }}>
                                                             <label class="form-check-label" for="rem4_{{ $licence->id }}">{{ __('messages.2_weeks') }}</label>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-xs-12 col-sm-12 col-md-12 mb-4">
-                                                    <div class="form-group">
-                                                        <strong>{{ __('messages.description') }}:</strong>
-                                                        <textarea name="description" class="form-control" rows="3" placeholder="{{ __('messages.description') }}">{{ $licence->description }}</textarea>
-                                                    </div>
+                                                <div class="col-12">
+                                                    <label class="form-label fw-bold">{{ __('messages.description') }}</label>
+                                                    <textarea name="description" class="form-control bg-light" rows="3" placeholder="{{ __('messages.description') }}">{{ $licence->description }}</textarea>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ __('messages.close') }}</button>
-                                            <button type="submit" class="btn btn-primary">{{ __('messages.save_changes') }}</button>
+                                        <div class="modal-footer border-0 pt-0">
+                                            <button type="button" class="btn btn-light rounded-pill px-4" data-bs-dismiss="modal">{{ __('messages.close') }}</button>
+                                            <button type="submit" class="btn btn-primary rounded-pill px-4"><i class="fa-solid fa-floppy-disk"></i> {{ __('messages.save_changes') }}</button>
                                         </div>
                                     </form>
                                 </div>
@@ -254,82 +269,70 @@
 
     <!-- Create Modal -->
     <div class="modal fade" id="createModal" tabindex="-1" aria-labelledby="createModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content border-0 shadow rounded-4">
                 <form action="{{ route('licences.store') }}" method="POST">
                     @csrf
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="createModalLabel">{{ __('messages.create_modal_title') }}</h5>
+                    <div class="modal-header border-0 pb-0">
+                        <h5 class="modal-title fw-bold" id="createModalLabel"><i class="fa-solid fa-plus text-primary"></i> {{ __('messages.create_modal_title') }}</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div class="modal-body text-start">
-                        <div class="row">
-                            <div class="col-xs-12 col-sm-6 col-md-6 mb-3">
-                                <div class="form-group">
-                                    <strong>{{ __('messages.licence_name') }}:</strong>
-                                    <input type="text" name="name" class="form-control" placeholder="{{ __('messages.licence_name') }}" value="{{ old('name') }}">
-                                </div>
+                    <div class="modal-body text-start p-4">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold">{{ __('messages.licence_name') }} <span class="text-danger">*</span></label>
+                                <input type="text" name="name" class="form-control bg-light" placeholder="{{ __('messages.licence_name') }}" value="{{ old('name') }}">
                             </div>
-                            <div class="col-xs-12 col-sm-6 col-md-6 mb-3">
-                                <div class="form-group">
-                                    <strong>{{ __('messages.vendor_name') }}:</strong>
-                                    <input type="text" name="vendor_name" class="form-control" placeholder="{{ __('messages.vendor_name') }}" value="{{ old('vendor_name') }}">
-                                </div>
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold">{{ __('messages.vendor_name') }}</label>
+                                <input type="text" name="vendor_name" class="form-control bg-light" placeholder="{{ __('messages.vendor_name') }}" value="{{ old('vendor_name') }}">
                             </div>
-                            <div class="col-xs-12 col-sm-6 col-md-6 mb-3">
-                                <div class="form-group">
-                                    <strong>{{ __('messages.licence_type') }}:</strong>
-                                    <select name="licence_type" class="form-select" id="create_licence_type">
-                                        <option value="Subscription" {{ old('licence_type') == 'Subscription' ? 'selected' : '' }}>{{ __('messages.subscription') }}</option>
-                                        <option value="Perpetual" {{ old('licence_type') == 'Perpetual' ? 'selected' : '' }}>{{ __('messages.perpetual') }}</option>
-                                    </select>
-                                </div>
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold">{{ __('messages.licence_type') }} <span class="text-danger">*</span></label>
+                                <select name="licence_type" class="form-select bg-light" id="create_licence_type">
+                                    <option value="Subscription" {{ old('licence_type') == 'Subscription' ? 'selected' : '' }}>{{ __('messages.subscription') }}</option>
+                                    <option value="Perpetual" {{ old('licence_type') == 'Perpetual' ? 'selected' : '' }}>{{ __('messages.perpetual') }}</option>
+                                </select>
                             </div>
 
-                            <div class="col-xs-12 col-sm-6 col-md-6 mb-3">
-                                <div class="form-group">
-                                    <strong>{{ __('messages.period_start') }}:</strong>
-                                    <input type="date" name="period_start" class="form-control" value="{{ old('period_start') }}">
-                                </div>
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold">{{ __('messages.period_start') }}</label>
+                                <input type="date" name="period_start" class="form-control bg-light" value="{{ old('period_start') }}">
                             </div>
-                            <div class="col-xs-12 col-sm-6 col-md-6 mb-3" id="create_period_end_wrapper">
-                                <div class="form-group">
-                                    <strong>{{ __('messages.period_end') }}:</strong>
-                                    <input type="date" name="period_end" class="form-control" value="{{ old('period_end') }}">
-                                </div>
+                            <div class="col-md-6" id="create_period_end_wrapper">
+                                <label class="form-label fw-bold">{{ __('messages.period_end') }}</label>
+                                <input type="date" name="period_end" class="form-control bg-light" value="{{ old('period_end') }}">
                             </div>
-                            <div class="col-xs-12 col-sm-12 col-md-12 mb-3" id="create_reminder_days_wrapper">
-                                <div class="form-group">
-                                    <strong>{{ __('messages.custom_reminder') }}:</strong><br>
-                                    <div class="form-check form-check-inline">
+                            <div class="col-12" id="create_reminder_days_wrapper">
+                                <label class="form-label fw-bold">{{ __('messages.custom_reminder') }}</label>
+                                <div class="d-flex flex-wrap gap-3 p-3 bg-light rounded-3 border">
+                                    <div class="form-check">
                                         <input class="form-check-input" type="checkbox" name="reminder_days[]" value="3_months" id="crem1" {{ is_array(old('reminder_days')) && in_array('3_months', old('reminder_days')) ? 'checked' : '' }}>
                                         <label class="form-check-label" for="crem1">{{ __('messages.3_months') }}</label>
                                     </div>
-                                    <div class="form-check form-check-inline">
+                                    <div class="form-check">
                                         <input class="form-check-input" type="checkbox" name="reminder_days[]" value="2_months" id="crem2" {{ is_array(old('reminder_days')) && in_array('2_months', old('reminder_days')) ? 'checked' : '' }}>
                                         <label class="form-check-label" for="crem2">{{ __('messages.2_months') }}</label>
                                     </div>
-                                    <div class="form-check form-check-inline">
+                                    <div class="form-check">
                                         <input class="form-check-input" type="checkbox" name="reminder_days[]" value="1_month" id="crem3" {{ is_array(old('reminder_days')) && in_array('1_month', old('reminder_days')) ? 'checked' : '' }}>
                                         <label class="form-check-label" for="crem3">{{ __('messages.1_month') }}</label>
                                     </div>
-                                    <div class="form-check form-check-inline">
+                                    <div class="form-check">
                                         <input class="form-check-input" type="checkbox" name="reminder_days[]" value="2_weeks" id="crem4" {{ is_array(old('reminder_days')) && in_array('2_weeks', old('reminder_days')) ? 'checked' : '' }}>
                                         <label class="form-check-label" for="crem4">{{ __('messages.2_weeks') }}</label>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-xs-12 col-sm-12 col-md-12 mb-4">
-                                <div class="form-group">
-                                    <strong>{{ __('messages.description') }}:</strong>
-                                    <textarea name="description" class="form-control" rows="3" placeholder="{{ __('messages.description') }}">{{ old('description') }}</textarea>
-                                </div>
+                            <div class="col-12">
+                                <label class="form-label fw-bold">{{ __('messages.description') }}</label>
+                                <textarea name="description" class="form-control bg-light" rows="3" placeholder="{{ __('messages.description') }}">{{ old('description') }}</textarea>
                             </div>
                         </div>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ __('messages.close') }}</button>
-                        <button type="submit" class="btn btn-primary">{{ __('messages.submit') }}</button>
+                    <div class="modal-footer border-0 pt-0">
+                        <button type="button" class="btn btn-light rounded-pill px-4" data-bs-dismiss="modal">{{ __('messages.close') }}</button>
+                        <button type="submit" class="btn btn-primary rounded-pill px-4"><i class="fa-solid fa-floppy-disk"></i> {{ __('messages.submit') }}</button>
                     </div>
                 </form>
             </div>

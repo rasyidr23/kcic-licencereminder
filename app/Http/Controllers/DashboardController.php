@@ -34,11 +34,21 @@ class DashboardController extends Controller
                   ->orWhereDate('period_end', '<', $today);
             })->count();
 
+        // 3. Get Top 10 Licences Expiring Soon (or already expired recently)
+        $expiringSoonLicences = Licence::where('licence_type', 'Subscription')
+            ->whereNotNull('period_end')
+            ->orderBy('period_end', 'asc') // This will put older/expired ones first.
+            // If we only want ones expiring in the future or not too long ago:
+            ->whereDate('period_end', '>=', $today->copy()->subDays(30)) // exclude those expired more than 30 days ago
+            ->take(10)
+            ->get();
+
         return view('dashboard', compact(
             'subscriptionCount',
             'perpetualCount',
             'activeCount',
-            'inactiveCount'
+            'inactiveCount',
+            'expiringSoonLicences'
         ));
     }
 }

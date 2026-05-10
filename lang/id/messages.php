@@ -12,6 +12,7 @@ return [
     'per_page' => 'Per Halaman',
     'search' => 'Cari',
     'id' => 'ID',
+    'no' => 'No.',
     'name' => 'Nama Lisensi',
     'vendor_name' => 'Nama Perusahaan',
     'type' => 'Tipe',
@@ -72,4 +73,8 @@ return [
     'licence_types' => 'Tipe Lisensi',
     'active_status' => 'Aktif',
     'inactive_status' => 'Non-Aktif / Kedaluwarsa',
+    'expiring_soon' => 'Segera Kedaluwarsa & Mendesak',
+    'days_left' => 'Sisa Waktu',
+    'expired' => 'Kedaluwarsa',
+    'days' => 'hari',
 ];

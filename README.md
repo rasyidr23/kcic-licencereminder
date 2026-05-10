@@ -4,11 +4,12 @@ Aplikasi **Licence Reminder** adalah sebuah platform berbasis web yang dibangun 
 
 ## Fitur Utama
 
-1. **Manajemen Lisensi (CRUD):** Tambah, lihat, ubah, dan hapus data lisensi.
-2. **Log Riwayat Pembaruan:** Melacak riwayat perubahan secara otomatis (Update History Log) setiap kali informasi lisensi diperbarui.
-3. **Pengingat Email Otomatis (Cron Job):** Mengirimkan peringatan melalui email berdasarkan batas waktu kedaluwarsa lisensi secara periodik.
-4. **Sistem Lokalisasi (Bilingual):** Mendukung Bahasa Inggris (EN) dan Bahasa Indonesia (ID) dengan *Language Switcher*.
-5. **Pencarian, Pengurutan, & Filter:** Mencari berdasarkan nama lisensi atau vendor, melakukan *sorting* di setiap kolom, dan mem-filter status (Aktif/Non-Aktif).
+1. **Dashboard & Visualisasi Statistik (Baru!):** Halaman ringkasan dengan diagram pie (aktif vs non-aktif, tipe lisensi) dan daftar "Segera Kedaluwarsa" untuk prioritas pantauan.
+2. **Manajemen Lisensi (CRUD) Modern:** Tambah, lihat, ubah, dan hapus data lisensi dengan UI modal bergaya *floating* dan *pill badges* yang intuitif.
+3. **Log Riwayat Pembaruan:** Melacak riwayat perubahan secara otomatis (Update History Log) setiap kali informasi lisensi diperbarui, ditampilkan dalam format "timeline" yang bersih.
+4. **Pengingat Email Otomatis (Cron Job):** Mengirimkan peringatan melalui email berdasarkan batas waktu kedaluwarsa lisensi secara periodik dengan pengaturan email target yang dinamis.
+5. **Navigasi Sidebar yang Responsif:** Sistem *sidebar* ramping yang secara otomatis bersembunyi di perangkat *mobile* (Bilingual: Bahasa Inggris (EN) & Bahasa Indonesia (ID)).
+6. **Pencarian, Pengurutan, & Pagination Khusus:** Urutan angka "No" yang dinamis berdasarkan *sort descending/ascending*, serta fitur penyesuaian jumlah data per halaman.
 
 ---
 

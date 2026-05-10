@@ -12,6 +12,7 @@ return [
     'per_page' => 'Per Page',
     'search' => 'Search',
     'id' => 'ID',
+    'no' => 'No.',
     'name' => 'Licence Name',
     'vendor_name' => 'Company Name',
     'type' => 'Type',
@@ -72,4 +73,8 @@ return [
     'licence_types' => 'Licence Types',
     'active_status' => 'Active',
     'inactive_status' => 'Inactive / Expired',
+    'expiring_soon' => 'Expiring Soon & Urgent',
+    'days_left' => 'Days Left',
+    'expired' => 'Expired',
+    'days' => 'days',
 ];

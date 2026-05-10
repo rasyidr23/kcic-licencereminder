@@ -35,6 +35,68 @@
     </div>
 </div>
 
+<div class="row">
+    <div class="col-12 mb-4">
+        <div class="card shadow-sm border-0 rounded-4">
+            <div class="card-header bg-white border-0 pt-4 pb-0">
+                <h5 class="card-title fw-bold text-danger"><i class="fa-solid fa-triangle-exclamation"></i> {{ __('messages.expiring_soon') }}</h5>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle">
+                        <thead class="table-light">
+                            <tr>
+                                <th>{{ __('messages.name') }}</th>
+                                <th>{{ __('messages.vendor_name') }}</th>
+                                <th>{{ __('messages.expired_date') }}</th>
+                                <th>{{ __('messages.days_left') }}</th>
+                                <th>{{ __('messages.action') }}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @forelse($expiringSoonLicences as $licence)
+                                @php
+                                    $endDate = \Carbon\Carbon::parse($licence->period_end)->startOfDay();
+                                    $today = \Carbon\Carbon::today();
+                                    $daysLeft = $today->diffInDays($endDate, false); // false for negative if passed
+                                    
+                                    if ($daysLeft < 0) {
+                                        $badgeClass = 'bg-danger';
+                                        $statusText = __('messages.expired');
+                                    } elseif ($daysLeft <= 14) {
+                                        $badgeClass = 'bg-warning text-dark';
+                                        $statusText = $daysLeft . ' ' . __('messages.days');
+                                    } else {
+                                        $badgeClass = 'bg-info text-dark';
+                                        $statusText = $daysLeft . ' ' . __('messages.days');
+                                    }
+                                @endphp
+                                <tr>
+                                    <td class="fw-bold">{{ $licence->name }}</td>
+                                    <td>{{ $licence->vendor_name ?? '-' }}</td>
+                                    <td>{{ $endDate->format('d M Y') }}</td>
+                                    <td>
+                                        <span class="badge {{ $badgeClass }} fs-6">{{ $statusText }}</span>
+                                    </td>
+                                    <td>
+                                        <a href="{{ route('licences.show', $licence->id) }}" class="btn btn-sm btn-outline-primary">
+                                            {{ __('messages.show') }}
+                                        </a>
+                                    </td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="5" class="text-center text-muted py-4">Belum ada lisensi yang mendesak.</td>
+                                </tr>
+                            @endforelse
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function () {
