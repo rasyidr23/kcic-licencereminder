@@ -20,3 +20,21 @@ Route::resource('licences', LicenceController::class);
 
 Route::get('settings', [SettingController::class, 'index'])->name('settings.index');
 Route::post('settings', [SettingController::class, 'update'])->name('settings.update');
+
+// Webhook for external Cron Job (e.g., cron-job.org)
+Route::get('/api/trigger-reminders', function (\Illuminate\Http\Request $request) {
+    // Basic security: require a secret token in the URL to prevent unauthorized triggers
+    $secret = config('app.cron_secret', 'default-secret-token');
+    if ($request->query('token') !== $secret) {
+        return response()->json(['error' => 'Unauthorized'], 401);
+    }
+
+    // Call the Artisan command directly
+    \Illuminate\Support\Facades\Artisan::call('app:send-licence-reminders');
+    
+    return response()->json([
+        'success' => true,
+        'message' => 'Reminders triggered successfully',
+        'output' => \Illuminate\Support\Facades\Artisan::output()
+    ]);
+});
