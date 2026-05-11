@@ -11,6 +11,7 @@
         body { 
             background-color: #f4f6f9; 
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow-x: hidden;
         }
         
         /* Sidebar Styling */
@@ -201,15 +202,56 @@
                 padding: 0 15px;
             }
             .sidebar {
-                z-index: 1100;
+                z-index: 1200;
             }
+            .sidebar-backdrop {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100vw;
+                height: 100vh;
+                background: rgba(0,0,0,0.5);
+                backdrop-filter: blur(4px);
+                z-index: 1150;
+            }
+            .sidebar-backdrop.show {
+                display: block;
+            }
+            .close-sidebar {
+                display: block !important;
+            }
+        }
+
+        .close-sidebar {
+            display: none;
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            color: rgba(255,255,255,0.6);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .close-sidebar:hover {
+            color: #fff;
+            transform: rotate(90deg);
         }
     </style>
 </head>
 <body class="{{ session('sidebar_collapsed') ? 'sidebar-collapsed' : '' }}">
 
+<!-- Mobile Sidebar Backdrop -->
+<div class="sidebar-backdrop" id="sidebar-backdrop" onclick="toggleSidebar()"></div>
+
 <!-- Sidebar -->
 <div class="sidebar" id="sidebar">
+    <button class="close-sidebar" onclick="toggleSidebar()">
+        <i class="fa-solid fa-xmark"></i>
+    </button>
     <a href="{{ route('dashboard') }}" class="brand">
         <img src="{{ asset('favicon.png') }}" alt="KCIC Logo" style="width: 30px; height: 30px; object-fit: contain;"> KCIC Licence
     </a>
@@ -289,7 +331,18 @@
     }
 
     function toggleSidebar() {
-        document.getElementById('sidebar').classList.toggle('show');
+        const sidebar = document.getElementById('sidebar');
+        const backdrop = document.getElementById('sidebar-backdrop');
+        
+        sidebar.classList.toggle('show');
+        if (backdrop) {
+            backdrop.classList.toggle('show');
+        }
+        
+        // Prevent scrolling when sidebar is open on mobile
+        if (window.innerWidth <= 768) {
+            document.body.style.overflow = sidebar.classList.contains('show') ? 'hidden' : '';
+        }
     }
 
     function toggleDesktopSidebar() {
