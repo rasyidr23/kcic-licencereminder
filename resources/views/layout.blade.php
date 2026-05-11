@@ -23,10 +23,11 @@
             background-color: #212529;
             color: #fff;
             padding-top: 20px;
-            transition: all 0.3s;
-            z-index: 1000;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 1050;
             display: flex;
             flex-direction: column;
+            overflow-y: auto;
         }
         
         .sidebar .brand {
@@ -163,23 +164,27 @@
         }
         
         .mobile-toggle, .desktop-toggle {
-            background: #f8f9fa;
-            border: 1px solid #dee2e6;
-            font-size: 1.2rem;
-            color: #212529;
-            padding: 8px 12px;
+            background: #fff;
+            border: 1px solid #e0e0e0;
+            font-size: 1.1rem;
+            color: #333;
+            width: 42px;
+            height: 42px;
             border-radius: 10px;
-            transition: all 0.2s;
+            transition: all 0.2s ease;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
         }
 
         .mobile-toggle:hover, .desktop-toggle:hover {
-            background-color: #e9ecef;
-            color: #0d6efd;
+            background-color: #0d6efd;
+            color: #fff;
             border-color: #0d6efd;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 10px rgba(13, 110, 253, 0.2);
         }
 
         @media (min-width: 769px) {
@@ -194,6 +199,9 @@
             }
             .topbar {
                 padding: 0 15px;
+            }
+            .sidebar {
+                z-index: 1100;
             }
         }
     </style>
@@ -226,10 +234,10 @@
         @endif
     </ul>
     
-    <div class="mt-auto p-3">
+    <div class="mt-auto p-4 border-top border-secondary">
         <form action="{{ route('logout') }}" method="POST">
             @csrf
-            <button type="submit" class="btn btn-outline-danger w-100 rounded-pill">
+            <button type="submit" class="btn btn-danger w-100 rounded-pill shadow-sm">
                 <i class="fa-solid fa-right-from-bracket"></i> {{ __('Logout') }}
             </button>
         </form>
