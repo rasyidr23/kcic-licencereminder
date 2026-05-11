@@ -93,7 +93,7 @@
             height: 70px;
             display: flex;
             align-items: center;
-            justify-content: flex-end;
+            justify-content: space-between;
             padding: 0 30px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.05);
         }
@@ -163,27 +163,38 @@
         }
         
         .mobile-toggle, .desktop-toggle {
-            background: none;
-            border: none;
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
             font-size: 1.2rem;
-            color: #495057;
-            padding: 10px;
-            border-radius: 8px;
+            color: #212529;
+            padding: 8px 12px;
+            border-radius: 10px;
             transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
         }
 
         .mobile-toggle:hover, .desktop-toggle:hover {
-            background-color: #f8f9fa;
+            background-color: #e9ecef;
             color: #0d6efd;
+            border-color: #0d6efd;
         }
 
-        .mobile-toggle {
-            display: none;
-            margin-right: auto;
+        @media (min-width: 769px) {
+            .mobile-toggle {
+                display: none !important;
+            }
         }
 
-        .desktop-toggle {
-            margin-right: auto;
+        @media (max-width: 768px) {
+            .desktop-toggle {
+                display: none !important;
+            }
+            .topbar {
+                padding: 0 15px;
+            }
         }
     </style>
 </head>
@@ -233,7 +244,7 @@
             <i class="fa-solid fa-bars"></i>
         </button>
 
-        <button class="desktop-toggle d-none d-md-block" onclick="toggleDesktopSidebar()">
+        <button class="desktop-toggle" onclick="toggleDesktopSidebar()">
             <i class="fa-solid fa-bars-staggered"></i>
         </button>
         
