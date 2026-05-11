@@ -134,6 +134,14 @@
             cursor: not-allowed;
         }
 
+        /* Collapsed Sidebar State */
+        .sidebar-collapsed .sidebar {
+            left: -250px;
+        }
+        .sidebar-collapsed .main-content {
+            margin-left: 0;
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             .sidebar {
@@ -141,26 +149,45 @@
             }
             .sidebar.show {
                 transform: translateX(0);
+                left: 0 !important;
             }
             .main-content {
-                margin-left: 0;
+                margin-left: 0 !important;
             }
             .mobile-toggle {
                 display: block !important;
             }
+            .desktop-toggle {
+                display: none !important;
+            }
         }
         
-        .mobile-toggle {
-            display: none;
+        .mobile-toggle, .desktop-toggle {
             background: none;
             border: none;
-            font-size: 1.5rem;
-            color: #333;
+            font-size: 1.2rem;
+            color: #495057;
+            padding: 10px;
+            border-radius: 8px;
+            transition: all 0.2s;
+        }
+
+        .mobile-toggle:hover, .desktop-toggle:hover {
+            background-color: #f8f9fa;
+            color: #0d6efd;
+        }
+
+        .mobile-toggle {
+            display: none;
+            margin-right: auto;
+        }
+
+        .desktop-toggle {
             margin-right: auto;
         }
     </style>
 </head>
-<body>
+<body class="{{ session('sidebar_collapsed') ? 'sidebar-collapsed' : '' }}">
 
 <!-- Sidebar -->
 <div class="sidebar" id="sidebar">
@@ -205,6 +232,10 @@
         <button class="mobile-toggle" onclick="toggleSidebar()">
             <i class="fa-solid fa-bars"></i>
         </button>
+
+        <button class="desktop-toggle d-none d-md-block" onclick="toggleDesktopSidebar()">
+            <i class="fa-solid fa-bars-staggered"></i>
+        </button>
         
         <div class="d-flex align-items-center gap-3">
             <div class="text-end d-none d-md-block">
@@ -233,8 +264,19 @@
 </div>
 
 <script>
+    // Initialize sidebar state from localStorage
+    if (localStorage.getItem('sidebar-collapsed') === 'true') {
+        document.body.classList.add('sidebar-collapsed');
+    }
+
     function toggleSidebar() {
         document.getElementById('sidebar').classList.toggle('show');
+    }
+
+    function toggleDesktopSidebar() {
+        document.body.classList.toggle('sidebar-collapsed');
+        // Save state to localStorage
+        localStorage.setItem('sidebar-collapsed', document.body.classList.contains('sidebar-collapsed'));
     }
 </script>
 
