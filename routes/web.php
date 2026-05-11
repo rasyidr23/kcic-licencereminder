@@ -24,7 +24,7 @@ Route::post('settings', [SettingController::class, 'update'])->name('settings.up
 // Webhook for external Cron Job (e.g., cron-job.org)
 Route::get('/webhook/trigger-reminders', function (\Illuminate\Http\Request $request) {
     // Basic security: require a secret token in the URL to prevent unauthorized triggers
-    $secret = config('app.cron_secret', 'default-secret-token');
+    $secret = env('CRON_SECRET', 'KCICRahasia2026!');
     if ($request->query('token') !== $secret) {
         return response()->json(['error' => 'Unauthorized'], 401);
     }
