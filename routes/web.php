@@ -20,6 +20,7 @@ Route::resource('licences', LicenceController::class);
 
 Route::get('settings', [SettingController::class, 'index'])->name('settings.index');
 Route::post('settings', [SettingController::class, 'update'])->name('settings.update');
+Route::post('settings/test-email', [SettingController::class, 'sendTestEmail'])->name('settings.test_email');
 
 // Webhook for external Cron Job (e.g., cron-job.org)
 Route::get('/webhook/trigger-reminders', function (\Illuminate\Http\Request $request) {

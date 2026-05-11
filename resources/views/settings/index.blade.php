@@ -12,6 +12,13 @@
         </div>
     @endif
 
+    @if ($message = Session::get('error'))
+        <div class="alert alert-danger alert-dismissible fade show border-0 shadow-sm" role="alert">
+            <i class="fa-solid fa-triangle-exclamation"></i> {{ $message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
+
     <div class="card shadow-sm border-0 rounded-4">
         <div class="card-body p-4">
             <form action="{{ route('settings.update') }}" method="POST">
@@ -29,6 +36,19 @@
                     </div>
                 </div>
             </form>
+
+            <hr class="my-5 opacity-25">
+            
+            <div class="d-flex justify-content-between align-items-center bg-light p-4 rounded-4 border">
+                <div>
+                    <h5 class="mb-1 fw-bold"><i class="fa-solid fa-paper-plane text-success"></i> Uji Coba Pengiriman Email</h5>
+                    <p class="text-muted mb-0 small">Kirim email simulasi untuk memastikan konfigurasi SMTP (Gmail) Anda sudah berjalan dengan baik.</p>
+                </div>
+                <form action="{{ route('settings.test_email') }}" method="POST">
+                    @csrf
+                    <button type="submit" class="btn btn-outline-success rounded-pill px-4 shadow-sm"><i class="fa-solid fa-vial"></i> Kirim Email Tes</button>
+                </form>
+            </div>
         </div>
     </div>
 @endsection
