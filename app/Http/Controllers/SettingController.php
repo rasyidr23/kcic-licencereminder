@@ -36,13 +36,20 @@ class SettingController extends Controller
 
         $emails = array_map('trim', explode(',', $targetEmailsSetting));
         
+        $dummyLicence = \App\Models\Licence::first();
+        if (!$dummyLicence) {
+            $dummyLicence = current(array_filter([\App\Models\Licence::make([
+                'name' => 'Demo Licence (Uji Coba Sistem)',
+                'vendor_name' => 'PT Vendor Teknologi Dummy',
+                'period_end' => now()->addWeeks(2)->format('Y-m-d'),
+                'licence_type' => 'Subscription',
+            ])], function($l) { $l->id = 999; return true; }));
+        }
+        
         try {
             foreach ($emails as $email) {
                 if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
-                    \Illuminate\Support\Facades\Mail::raw("Halo! Ini adalah email uji coba (Test Notification) dari aplikasi KCIC Licence Reminder.\n\nJika Anda menerima email ini, berarti pengaturan email Anda sudah berjalan dengan sempurna. Aplikasi kini siap mengirimkan pengingat lisensi secara otomatis sesuai jadwal.\n\nTerima kasih!", function ($message) use ($email) {
-                        $message->to($email)
-                                ->subject('Test Notification - KCIC Licence Reminder');
-                    });
+                    \Illuminate\Support\Facades\Mail::to($email)->send(new \App\Mail\LicenceReminderMail($dummyLicence, '2 Minggu Lagi (TEST)'));
                 }
             }
             return redirect()->back()->with('success', 'Test email sent successfully! Please check your inbox.');
