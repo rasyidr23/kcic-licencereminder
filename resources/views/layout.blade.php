@@ -165,7 +165,7 @@
 <!-- Sidebar -->
 <div class="sidebar" id="sidebar">
     <a href="{{ route('dashboard') }}" class="brand">
-        <i class="fa-solid fa-shield-halved text-primary"></i> KCIC Licence
+        <img src="{{ asset('favicon.png') }}" alt="KCIC Logo" style="width: 30px; height: 30px; object-fit: contain;"> KCIC Licence
     </a>
     
     <ul class="nav-menu">

@@ -96,8 +96,8 @@
 </head>
 <body>
     <div class="login-card">
-        <div class="logo-box">
-            <i class="fa-solid fa-shield-halved"></i>
+        <div class="logo-box" style="background: white; border: 1px solid #dee2e6;">
+            <img src="{{ asset('favicon.png') }}" alt="KCIC Logo" style="width: 40px; height: 40px; object-fit: contain;">
         </div>
         <h2>Welcome Back</h2>
         <p class="subtitle">Please enter your details to sign in</p>
