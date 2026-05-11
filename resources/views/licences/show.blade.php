@@ -7,9 +7,11 @@
             <a class="btn btn-light rounded-pill px-4 shadow-sm border" href="{{ route('licences.index') }}">
                 <i class="fa-solid fa-arrow-left"></i> {{ __('messages.back') }}
             </a>
+            @if(auth()->user()->role === 'admin')
             <button type="button" class="btn btn-primary rounded-pill px-4 shadow-sm" data-bs-toggle="modal" data-bs-target="#editModal{{ $licence->id }}">
                 <i class="fa-solid fa-pen"></i> {{ __('messages.edit') }}
             </button>
+            @endif
         </div>
     </div>
 

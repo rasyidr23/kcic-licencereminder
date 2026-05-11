@@ -25,6 +25,8 @@
             padding-top: 20px;
             transition: all 0.3s;
             z-index: 1000;
+            display: flex;
+            flex-direction: column;
         }
         
         .sidebar .brand {
@@ -177,12 +179,23 @@
                 <i class="fa-solid fa-list-check"></i> {{ __('messages.licence_management') }}
             </a>
         </li>
+        @if(auth()->check() && auth()->user()->role === 'admin')
         <li>
             <a href="{{ route('settings.index') }}" class="{{ request()->routeIs('settings.*') ? 'active' : '' }}">
                 <i class="fa-solid fa-envelope-circle-check"></i> {{ __('messages.email_settings') }}
             </a>
         </li>
+        @endif
     </ul>
+    
+    <div class="mt-auto p-3">
+        <form action="{{ route('logout') }}" method="POST">
+            @csrf
+            <button type="submit" class="btn btn-outline-danger w-100 rounded-pill">
+                <i class="fa-solid fa-right-from-bracket"></i> {{ __('Logout') }}
+            </button>
+        </form>
+    </div>
 </div>
 
 <!-- Main Content -->
@@ -193,14 +206,23 @@
             <i class="fa-solid fa-bars"></i>
         </button>
         
-        <div class="dropdown">
-            <a class="btn btn-light dropdown-toggle text-dark border" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                <i class="fa-solid fa-globe"></i> {{ strtoupper(app()->getLocale()) }}
-            </a>
-            <ul class="dropdown-menu dropdown-menu-end">
-                <li><a class="dropdown-item" href="{{ route('lang.switch', 'en') }}">{{ __('messages.english') }}</a></li>
-                <li><a class="dropdown-item" href="{{ route('lang.switch', 'id') }}">{{ __('messages.indonesian') }}</a></li>
-            </ul>
+        <div class="d-flex align-items-center gap-3">
+            <div class="text-end d-none d-md-block">
+                <div class="fw-bold text-dark">{{ auth()->user()->name }}</div>
+                <div class="badge {{ auth()->user()->role === 'admin' ? 'bg-primary' : 'bg-secondary' }} small">
+                    {{ ucfirst(auth()->user()->role) }}
+                </div>
+            </div>
+
+            <div class="dropdown">
+                <a class="btn btn-light dropdown-toggle text-dark border" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fa-solid fa-globe"></i> {{ strtoupper(app()->getLocale()) }}
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end">
+                    <li><a class="dropdown-item" href="{{ route('lang.switch', 'en') }}">{{ __('messages.english') }}</a></li>
+                    <li><a class="dropdown-item" href="{{ route('lang.switch', 'id') }}">{{ __('messages.indonesian') }}</a></li>
+                </ul>
+            </div>
         </div>
     </div>
 

@@ -53,11 +53,13 @@
                 <input type="hidden" name="sort_by" value="{{ request('sort_by') }}">
                 <input type="hidden" name="sort_dir" value="{{ request('sort_dir') }}">
                 
+                @if(auth()->user()->role === 'admin')
                 <div class="col-md-4 text-md-end">
                     <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#createModal">
                         + {{ __('messages.create_new_licence') }}
                     </button>
                 </div>
+                @endif
             </form>
         </div>
     </div>
@@ -166,6 +168,8 @@
                                     <a class="btn btn-outline-info btn-sm" href="{{ route('licences.show',$licence->id) }}" title="{{ __('messages.show') }}">
                                         <i class="fa-solid fa-eye"></i>
                                     </a>
+                                    
+                                    @if(auth()->user()->role === 'admin')
                                     <button type="button" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#editModal{{ $licence->id }}" title="{{ __('messages.edit') }}">
                                         <i class="fa-solid fa-pen"></i>
                                     </button>
@@ -176,6 +180,7 @@
                                     <button type="button" class="btn btn-outline-danger btn-sm btn-delete" title="{{ __('messages.delete') }}">
                                         <i class="fa-solid fa-trash"></i>
                                     </button>
+                                    @endif
                                 </form>
                             </td>
                         </tr>
