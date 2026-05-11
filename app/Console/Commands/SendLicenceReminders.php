@@ -59,28 +59,37 @@ class SendLicenceReminders extends Command
                 '0_days'   => 'Sudah Expired Hari Ini'
             ];
 
-            foreach ($reminders as $rem) {
-                if (isset($targetDates[$rem])) {
-                    if ($targetDates[$rem]->format('Y-m-d') === $expiredDate->format('Y-m-d')) {
-                        $periodLabel = $labels[$rem];
-                        
-                        $targetEmailsSetting = \App\Models\Setting::where('key', 'target_emails')->value('value');
-                        if ($targetEmailsSetting) {
-                            $emails = array_map('trim', explode(',', $targetEmailsSetting));
-                            foreach ($emails as $email) {
-                                if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
-                                    Mail::to($email)->send(new LicenceReminderMail($licence, $periodLabel));
-                                    $this->info("Reminder sent for: {$licence->name} ({$periodLabel}) to {$email}");
-                                    $totalSent++;
-                                }
-                            }
-                        } else {
-                            $this->warn("No target emails configured in settings for {$licence->name}");
+            $shouldSend = false;
+            $periodLabel = '';
+
+            if ($expiredDate->lessThan($today)) {
+                $shouldSend = true;
+                $periodLabel = 'Telah Expired (Lewat Waktu)';
+            } else {
+                foreach ($reminders as $rem) {
+                    if (isset($targetDates[$rem])) {
+                        if ($targetDates[$rem]->format('Y-m-d') === $expiredDate->format('Y-m-d')) {
+                            $shouldSend = true;
+                            $periodLabel = $labels[$rem];
+                            break;
                         }
-                        
-                        // Prevent sending multiple emails for the same licence on the same day
-                        break;
                     }
+                }
+            }
+
+            if ($shouldSend) {
+                $targetEmailsSetting = \App\Models\Setting::where('key', 'target_emails')->value('value');
+                if ($targetEmailsSetting) {
+                    $emails = array_map('trim', explode(',', $targetEmailsSetting));
+                    foreach ($emails as $email) {
+                        if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                            Mail::to($email)->send(new LicenceReminderMail($licence, $periodLabel));
+                            $this->info("Reminder sent for: {$licence->name} ({$periodLabel}) to {$email}");
+                            $totalSent++;
+                        }
+                    }
+                } else {
+                    $this->warn("No target emails configured in settings for {$licence->name}");
                 }
             }
         }
