@@ -144,6 +144,53 @@
             margin-left: 0;
         }
 
+        /* Skeleton Loader Styles */
+        .skeleton-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #f4f6f9;
+            z-index: 50;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            transition: opacity 0.4s ease, visibility 0.4s ease;
+        }
+
+        .skeleton-overlay.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .skeleton-box {
+            background: #e2e5e9;
+            background: linear-gradient(90deg, #e2e5e9 25%, #f0f2f5 50%, #e2e5e9 75%);
+            background-size: 200% 100%;
+            animation: shimmer 1.5s infinite linear;
+            border-radius: 8px;
+        }
+
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+
+        .skeleton-header { height: 40px; width: 30%; margin-bottom: 30px; }
+        .skeleton-card { height: 120px; width: 100%; }
+        .skeleton-row { height: 60px; width: 100%; margin-bottom: 10px; }
+
+        /* Actual Content Wrapper */
+        #actual-content {
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        #actual-content.loaded {
+            opacity: 1;
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             .sidebar {
@@ -319,8 +366,31 @@
     </div>
 
     <!-- Content Area -->
-    <div class="content-area">
-        @yield('content')
+    <div class="content-area position-relative" id="main-content-area">
+        
+        <!-- Global Skeleton Loader -->
+        <div class="skeleton-overlay" id="skeleton-loader">
+            <div class="skeleton-box skeleton-header"></div>
+            
+            <div class="row mb-4">
+                <div class="col-md-3 col-6 mb-3"><div class="skeleton-box skeleton-card"></div></div>
+                <div class="col-md-3 col-6 mb-3"><div class="skeleton-box skeleton-card"></div></div>
+                <div class="col-md-3 col-6 mb-3"><div class="skeleton-box skeleton-card"></div></div>
+                <div class="col-md-3 col-6 mb-3"><div class="skeleton-box skeleton-card"></div></div>
+            </div>
+            
+            <div class="skeleton-box skeleton-row" style="height: 40px;"></div>
+            <div class="skeleton-box skeleton-row"></div>
+            <div class="skeleton-box skeleton-row"></div>
+            <div class="skeleton-box skeleton-row"></div>
+            <div class="skeleton-box skeleton-row"></div>
+        </div>
+
+        <!-- Actual Content -->
+        <div id="actual-content">
+            @yield('content')
+        </div>
+
     </div>
 </div>
 
@@ -350,6 +420,59 @@
         // Save state to localStorage
         localStorage.setItem('sidebar-collapsed', document.body.classList.contains('sidebar-collapsed'));
     }
+
+    // Handle Skeleton Loader transition on initial load
+    document.addEventListener("DOMContentLoaded", function() {
+        // Small delay to ensure smooth transition and make the skeleton visible briefly
+        setTimeout(() => {
+            hideSkeleton();
+        }, 300); // 300ms delay
+    });
+
+    function showSkeleton() {
+        const skeleton = document.getElementById('skeleton-loader');
+        const content = document.getElementById('actual-content');
+        if (skeleton && content) {
+            skeleton.style.display = 'flex';
+            skeleton.classList.remove('hidden');
+            content.classList.remove('loaded');
+        }
+    }
+
+    function hideSkeleton() {
+        const skeleton = document.getElementById('skeleton-loader');
+        const content = document.getElementById('actual-content');
+        if (skeleton) {
+            skeleton.classList.add('hidden');
+            setTimeout(() => { skeleton.style.display = 'none'; }, 400);
+        }
+        if (content) {
+            content.classList.add('loaded');
+        }
+    }
+
+    // Intercept link clicks to create an SPA-like feel
+    document.addEventListener('click', function(e) {
+        const link = e.target.closest('a');
+        if (!link) return;
+
+        const href = link.getAttribute('href');
+        // Ignore external links, anchors, javascript links, or links opening in a new tab
+        if (!href || href.startsWith('#') || href.startsWith('javascript:') || link.target === '_blank') return;
+
+        // If it's an internal link on the same domain
+        if (link.hostname === window.location.hostname) {
+            e.preventDefault(); // Stop immediate navigation
+            
+            // Show skeleton loader instantly
+            showSkeleton();
+
+            // Navigate to the new page after a tiny delay so the UI updates
+            setTimeout(() => {
+                window.location.href = link.href;
+            }, 50);
+        }
+    });
 </script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
