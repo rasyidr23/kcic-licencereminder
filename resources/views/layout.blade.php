@@ -43,16 +43,15 @@
             left: 0;
             height: 100vh;
             width: 250px;
-            background-color: #ffffff;
-            color: #333;
+            background-color: var(--kcic-red);
+            color: #fff;
             padding-top: 20px;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             z-index: 1050;
             display: flex;
             flex-direction: column;
             overflow-y: auto;
-            border-right: 1px solid #e5e7eb;
-            box-shadow: 4px 0 20px rgba(0,0,0,0.03);
+            box-shadow: 4px 0 20px rgba(0,0,0,0.1);
         }
         
         .sidebar .brand {
@@ -62,7 +61,7 @@
             display: flex;
             align-items: center;
             gap: 10px;
-            color: var(--kcic-red);
+            color: #fff;
             text-decoration: none;
             margin-bottom: 30px;
         }
@@ -70,6 +69,8 @@
         .sidebar .brand img {
             width: 30px;
             border-radius: 5px;
+            background-color: #fff;
+            padding: 2px;
         }
 
         .sidebar ul.nav-menu {
@@ -86,7 +87,7 @@
             display: flex;
             align-items: center;
             gap: 15px;
-            color: #555;
+            color: rgba(255, 255, 255, 0.8);
             text-decoration: none;
             padding: 12px 15px;
             border-radius: 8px;
@@ -97,8 +98,8 @@
         .sidebar ul.nav-menu li a:hover,
         .sidebar ul.nav-menu li a.active {
             color: #fff !important;
-            background-color: var(--kcic-red);
-            box-shadow: 0 4px 10px rgba(190, 30, 45, 0.2);
+            background-color: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
 
         .sidebar ul.nav-menu li a i {
@@ -349,10 +350,10 @@
         @endif
     </ul>
     
-    <div class="mt-auto p-4 border-top border-secondary">
+    <div class="mt-auto p-4 border-top" style="border-color: rgba(255,255,255,0.1) !important;">
         <form action="{{ route('logout') }}" method="POST">
             @csrf
-            <button type="submit" class="btn btn-danger w-100 rounded-pill shadow-sm">
+            <button type="submit" class="btn btn-light text-danger w-100 rounded-pill shadow-sm fw-bold">
                 <i class="fa-solid fa-right-from-bracket"></i> {{ __('Logout') }}
             </button>
         </form>
