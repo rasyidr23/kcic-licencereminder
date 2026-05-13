@@ -36,6 +36,8 @@ Route::middleware(['auth'])->group(function () {
         return redirect()->back();
     })->name('lang.switch');
 
+    Route::post('change-password', [AuthController::class, 'changePassword'])->name('password.change');
+
     // Admin Only Routes
     Route::middleware(['role:admin'])->group(function () {
         Route::get('licences/create', [LicenceController::class, 'create'])->name('licences.create');

@@ -346,18 +346,39 @@
         </button>
         
         <div class="d-flex align-items-center gap-3">
-            <div class="text-end d-none d-md-block">
-                <div class="fw-bold text-dark">{{ auth()->user()->name }}</div>
-                <div class="badge {{ auth()->user()->role === 'admin' ? 'bg-primary' : 'bg-secondary' }} small">
-                    {{ ucfirst(auth()->user()->role) }}
-                </div>
+            <div class="dropdown">
+                <a class="btn btn-light dropdown-toggle text-dark border d-flex align-items-center gap-2" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <div class="text-end d-none d-md-block">
+                        <div class="fw-bold text-dark">{{ auth()->user()->name }}</div>
+                        <div class="badge {{ auth()->user()->role === 'admin' ? 'bg-primary' : 'bg-secondary' }} small">
+                            {{ ucfirst(auth()->user()->role) }}
+                        </div>
+                    </div>
+                    <i class="fa-solid fa-user-circle fs-4 text-secondary d-md-none"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end shadow-sm border-0">
+                    <li>
+                        <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#changePasswordModal">
+                            <i class="fa-solid fa-key me-2"></i> {{ __('Change Password') }}
+                        </a>
+                    </li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li>
+                        <form action="{{ route('logout') }}" method="POST">
+                            @csrf
+                            <button type="submit" class="dropdown-item text-danger">
+                                <i class="fa-solid fa-right-from-bracket me-2"></i> {{ __('Logout') }}
+                            </button>
+                        </form>
+                    </li>
+                </ul>
             </div>
 
             <div class="dropdown">
                 <a class="btn btn-light dropdown-toggle text-dark border" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     <i class="fa-solid fa-globe"></i> {{ strtoupper(app()->getLocale()) }}
                 </a>
-                <ul class="dropdown-menu dropdown-menu-end">
+                <ul class="dropdown-menu dropdown-menu-end shadow-sm border-0">
                     <li><a class="dropdown-item" href="{{ route('lang.switch', 'en') }}">{{ __('messages.english') }}</a></li>
                     <li><a class="dropdown-item" href="{{ route('lang.switch', 'id') }}">{{ __('messages.indonesian') }}</a></li>
                 </ul>
@@ -391,6 +412,36 @@
             @yield('content')
         </div>
 
+    </div>
+</div>
+
+<!-- Change Password Modal -->
+<div class="modal fade" id="changePasswordModal" tabindex="-1" aria-labelledby="changePasswordModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content border-0 shadow">
+            <div class="modal-header border-bottom-0 pb-0">
+                <h5 class="modal-title fw-bold" id="changePasswordModalLabel">Change Password</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="{{ route('password.change') }}" method="POST" id="changePasswordForm">
+                    @csrf
+                    <div class="mb-3">
+                        <label class="form-label fw-bold small">Current Password</label>
+                        <input type="password" class="form-control" name="current_password" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-bold small">New Password</label>
+                        <input type="password" class="form-control" name="new_password" required minlength="8">
+                    </div>
+                    <div class="mb-4">
+                        <label class="form-label fw-bold small">Confirm New Password</label>
+                        <input type="password" class="form-control" name="new_password_confirmation" required minlength="8">
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100 rounded-pill fw-bold">Update Password</button>
+                </form>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -477,5 +528,30 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    @if(session('success'))
+        Swal.fire({
+            icon: 'success',
+            title: 'Success!',
+            text: '{{ session('success') }}',
+            confirmButtonColor: '#0d6efd'
+        });
+    @endif
+
+    @if($errors->any())
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            html: `
+                <ul class="text-start mb-0">
+                    @foreach($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            `,
+            confirmButtonColor: '#0d6efd'
+        });
+    @endif
+</script>
 </body>
 </html>
