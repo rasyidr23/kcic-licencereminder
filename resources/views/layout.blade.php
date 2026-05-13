@@ -51,7 +51,8 @@
             display: flex;
             flex-direction: column;
             overflow-y: auto;
-            box-shadow: 2px 0 15px rgba(0,0,0,0.05);
+            border-right: 1px solid #e5e7eb;
+            box-shadow: 4px 0 20px rgba(0,0,0,0.03);
         }
         
         .sidebar .brand {
@@ -121,7 +122,8 @@
             align-items: center;
             justify-content: space-between;
             padding: 0 30px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            border-bottom: 1px solid #e5e7eb;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.02);
         }
 
         .content-area {
