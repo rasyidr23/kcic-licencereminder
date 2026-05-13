@@ -24,6 +24,10 @@
             "dest": "/public/robots.txt"
         },
         {
+            "src": "/(.*\\.(?:png|jpe?g|gif|svg|ico|css|js|woff2?|ttf|eot))",
+            "dest": "/public/$1"
+        },
+        {
             "src": "/(.*)",
             "dest": "/api/index.php"
         }
