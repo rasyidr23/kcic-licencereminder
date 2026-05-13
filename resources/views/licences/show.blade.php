@@ -101,7 +101,7 @@
                 </div>
                 <div class="col-md-6">
                     <p class="text-muted mb-1 fs-6">{{ __('messages.type') }}</p>
-                    <span class="badge rounded-pill {{ $licence->licence_type == 'Perpetual' ? 'bg-success' : 'bg-primary' }} fs-6">{{ $licence->licence_type }}</span>
+                    <span class="badge rounded-pill {{ $licence->licence_type == 'Perpetual' ? 'bg-warning text-dark' : '' }} fs-6" style="{{ $licence->licence_type == 'Subscription' ? 'background-color: #0d6efd; color: white;' : '' }}">{{ $licence->licence_type }}</span>
                 </div>
                 <div class="col-md-6">
                     <p class="text-muted mb-1 fs-6">{{ __('messages.period') }}</p>

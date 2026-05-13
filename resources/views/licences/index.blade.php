@@ -142,7 +142,7 @@
                             <td>{{ $licence->name }}</td>
                             <td>{{ $licence->vendor_name ?? '-' }}</td>
                             <td>
-                                <span class="badge rounded-pill {{ $licence->licence_type == 'Perpetual' ? 'bg-success' : 'bg-primary' }}">
+                                <span class="badge rounded-pill {{ $licence->licence_type == 'Perpetual' ? 'bg-warning text-dark' : '' }}" style="{{ $licence->licence_type == 'Subscription' ? 'background-color: #0d6efd; color: white;' : '' }}">
                                     {{ $licence->licence_type }}
                                 </span>
                             </td>
