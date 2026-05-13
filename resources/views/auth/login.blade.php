@@ -15,7 +15,8 @@
         }
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6)), url('{{ asset('kcic-train-bg.jpg') }}') no-repeat center center;
+            background-size: cover;
             height: 100vh;
             display: flex;
             align-items: center;
