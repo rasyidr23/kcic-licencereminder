@@ -8,6 +8,28 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        :root {
+            --kcic-red: #BE1E2D;
+            --kcic-red-hover: #9b1824;
+        }
+
+        /* Override Bootstrap Primary */
+        .btn-primary {
+            background-color: var(--kcic-red) !important;
+            border-color: var(--kcic-red) !important;
+            color: #fff !important;
+        }
+        .btn-primary:hover, .btn-primary:focus {
+            background-color: var(--kcic-red-hover) !important;
+            border-color: var(--kcic-red-hover) !important;
+        }
+        .text-primary {
+            color: var(--kcic-red) !important;
+        }
+        .bg-primary {
+            background-color: var(--kcic-red) !important;
+        }
+
         body { 
             background-color: #f4f6f9; 
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -21,14 +43,15 @@
             left: 0;
             height: 100vh;
             width: 250px;
-            background-color: #212529;
-            color: #fff;
+            background-color: #ffffff;
+            color: #333;
             padding-top: 20px;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             z-index: 1050;
             display: flex;
             flex-direction: column;
             overflow-y: auto;
+            box-shadow: 2px 0 15px rgba(0,0,0,0.05);
         }
         
         .sidebar .brand {
@@ -38,7 +61,7 @@
             display: flex;
             align-items: center;
             gap: 10px;
-            color: #fff;
+            color: var(--kcic-red);
             text-decoration: none;
             margin-bottom: 30px;
         }
@@ -62,18 +85,19 @@
             display: flex;
             align-items: center;
             gap: 15px;
-            color: rgba(255, 255, 255, 0.7);
+            color: #555;
             text-decoration: none;
             padding: 12px 15px;
             border-radius: 8px;
             transition: 0.2s;
-            font-weight: 500;
+            font-weight: 600;
         }
 
         .sidebar ul.nav-menu li a:hover,
         .sidebar ul.nav-menu li a.active {
-            color: #fff;
-            background-color: #0d6efd;
+            color: #fff !important;
+            background-color: var(--kcic-red);
+            box-shadow: 0 4px 10px rgba(190, 30, 45, 0.2);
         }
 
         .sidebar ul.nav-menu li a i {
@@ -121,9 +145,9 @@
             background-color: #fff;
         }
         .page-item.active .page-link {
-            background-color: #0d6efd;
+            background-color: var(--kcic-red);
             color: white;
-            box-shadow: 0 4px 8px rgba(13,110,253,0.3);
+            box-shadow: 0 4px 8px rgba(190, 30, 45, 0.2);
         }
         .page-item .page-link:hover:not(.disabled) {
             background-color: #e9ecef;
@@ -228,11 +252,11 @@
         }
 
         .mobile-toggle:hover, .desktop-toggle:hover {
-            background-color: #0d6efd;
+            background-color: var(--kcic-red);
             color: #fff;
-            border-color: #0d6efd;
+            border-color: var(--kcic-red);
             transform: translateY(-1px);
-            box-shadow: 0 4px 10px rgba(13, 110, 253, 0.2);
+            box-shadow: 0 4px 10px rgba(190, 30, 45, 0.2);
         }
 
         @media (min-width: 769px) {
@@ -277,14 +301,14 @@
             right: 15px;
             background: none;
             border: none;
-            color: rgba(255,255,255,0.6);
+            color: #333;
             font-size: 1.5rem;
             cursor: pointer;
             transition: 0.2s;
         }
 
         .close-sidebar:hover {
-            color: #fff;
+            color: var(--kcic-red);
             transform: rotate(90deg);
         }
     </style>
@@ -534,7 +558,7 @@
             icon: 'success',
             title: 'Success!',
             text: '{{ session('success') }}',
-            confirmButtonColor: '#0d6efd'
+            confirmButtonColor: '#BE1E2D'
         });
     @endif
 
@@ -549,7 +573,7 @@
                     @endforeach
                 </ul>
             `,
-            confirmButtonColor: '#0d6efd'
+            confirmButtonColor: '#BE1E2D'
         });
     @endif
 </script>

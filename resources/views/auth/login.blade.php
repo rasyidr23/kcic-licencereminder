@@ -9,6 +9,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --kcic-red: #BE1E2D;
+            --kcic-red-hover: #9b1824;
+        }
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
             background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
@@ -31,17 +35,18 @@
         .logo-box {
             width: 64px;
             height: 64px;
-            background: #0d6efd;
+            background: white;
             border-radius: 16px;
             display: flex;
             align-items: center;
             justify-content: center;
             margin: 0 auto 24px;
-            box-shadow: 0 8px 16px rgba(13, 110, 253, 0.2);
+            box-shadow: 0 8px 16px rgba(190, 30, 45, 0.1);
+            border: 1px solid #dee2e6;
         }
         .logo-box i {
             font-size: 28px;
-            color: white;
+            color: var(--kcic-red);
         }
         h2 {
             font-weight: 700;
@@ -70,11 +75,15 @@
         }
         .form-control:focus {
             background-color: #fff;
-            border-color: #0d6efd;
-            box-shadow: 0 0 0 4px rgba(13, 110, 253, 0.1);
+            border-color: var(--kcic-red);
+            box-shadow: 0 0 0 4px rgba(190, 30, 45, 0.1);
+        }
+        .form-check-input:checked {
+            background-color: var(--kcic-red);
+            border-color: var(--kcic-red);
         }
         .btn-login {
-            background: #0d6efd;
+            background: var(--kcic-red);
             border: none;
             border-radius: 12px;
             padding: 12px;
@@ -82,11 +91,13 @@
             width: 100%;
             margin-top: 16px;
             transition: all 0.2s;
+            color: white;
         }
         .btn-login:hover {
-            background: #0b5ed7;
+            background: var(--kcic-red-hover);
             transform: translateY(-2px);
-            box-shadow: 0 8px 16px rgba(13, 110, 253, 0.2);
+            box-shadow: 0 8px 16px rgba(190, 30, 45, 0.2);
+            color: white;
         }
         .alert {
             border-radius: 12px;
