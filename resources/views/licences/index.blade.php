@@ -26,42 +26,47 @@
         </div>
     @endif
 
-    <div class="card shadow-sm mb-4">
-        <div class="card-body">
-            <form action="{{ route('licences.index') }}" method="GET" class="row align-items-center">
-                <div class="col-md-2 mb-2 mb-md-0">
-                    <select name="per_page" class="form-select" onchange="this.form.submit()">
-                        <option value="10" {{ $perPage == 10 ? 'selected' : '' }}>10 {{ __('messages.per_page') }}</option>
-                        <option value="25" {{ $perPage == 25 ? 'selected' : '' }}>25 {{ __('messages.per_page') }}</option>
-                        <option value="50" {{ $perPage == 50 ? 'selected' : '' }}>50 {{ __('messages.per_page') }}</option>
-                    </select>
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-center mb-4 gap-3">
+        <form action="{{ route('licences.index') }}" method="GET" class="d-flex flex-column flex-md-row gap-3 w-100 align-items-center">
+            
+            <!-- Filters -->
+            <div class="d-flex gap-2 w-100 w-md-auto">
+                <select name="per_page" class="form-select border-0 shadow-sm rounded-pill px-3 fw-medium text-secondary flex-grow-1" style="background-color: #fff;" onchange="this.form.submit()">
+                    <option value="10" {{ $perPage == 10 ? 'selected' : '' }}>10 {{ __('messages.per_page') }}</option>
+                    <option value="25" {{ $perPage == 25 ? 'selected' : '' }}>25 {{ __('messages.per_page') }}</option>
+                    <option value="50" {{ $perPage == 50 ? 'selected' : '' }}>50 {{ __('messages.per_page') }}</option>
+                </select>
+
+                <select name="status" class="form-select border-0 shadow-sm rounded-pill px-3 fw-medium text-secondary flex-grow-1" style="background-color: #fff;" onchange="this.form.submit()">
+                    <option value="all" {{ $status == 'all' ? 'selected' : '' }}>{{ __('messages.all_status') ?? 'All Status' }}</option>
+                    <option value="active" {{ $status == 'active' ? 'selected' : '' }}>{{ __('messages.active') }}</option>
+                    <option value="inactive" {{ $status == 'inactive' ? 'selected' : '' }}>{{ __('messages.inactive') }}</option>
+                </select>
+            </div>
+
+            <!-- Search Bar -->
+            <div class="flex-grow-1 w-100" style="max-width: 500px;">
+                <div class="input-group shadow-sm rounded-pill overflow-hidden bg-white">
+                    <span class="input-group-text border-0 bg-transparent text-muted ps-4">
+                        <i class="fa-solid fa-search"></i>
+                    </span>
+                    <input type="text" name="search" class="form-control border-0 shadow-none ps-2" placeholder="{{ __('messages.search_placeholder') }}" value="{{ $search }}">
+                    <button class="btn btn-primary px-4 fw-bold border-0" type="submit">{{ __('messages.search') }}</button>
                 </div>
-                <div class="col-md-4 mb-2 mb-md-0">
-                    <div class="input-group">
-                        <input type="text" name="search" class="form-control" placeholder="{{ __('messages.search_placeholder') }}" value="{{ $search }}">
-                        <button class="btn btn-outline-secondary" type="submit">{{ __('messages.search') }}</button>
-                    </div>
-                </div>
-                <div class="col-md-2 mb-2 mb-md-0">
-                    <select name="status" class="form-select" onchange="this.form.submit()">
-                        <option value="all" {{ $status == 'all' ? 'selected' : '' }}>{{ __('messages.all_status') ?? 'All Status' }}</option>
-                        <option value="active" {{ $status == 'active' ? 'selected' : '' }}>{{ __('messages.active') }}</option>
-                        <option value="inactive" {{ $status == 'inactive' ? 'selected' : '' }}>{{ __('messages.inactive') }}</option>
-                    </select>
-                </div>
-                <!-- Hidden inputs to preserve sorting when submitting the search/filter form -->
-                <input type="hidden" name="sort_by" value="{{ request('sort_by') }}">
-                <input type="hidden" name="sort_dir" value="{{ request('sort_dir') }}">
-                
-                @if(auth()->user()->role === 'admin')
-                <div class="col-md-4 text-md-end">
-                    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#createModal">
-                        + {{ __('messages.create_new_licence') }}
-                    </button>
-                </div>
-                @endif
-            </form>
-        </div>
+            </div>
+
+            <input type="hidden" name="sort_by" value="{{ request('sort_by') }}">
+            <input type="hidden" name="sort_dir" value="{{ request('sort_dir') }}">
+            
+            <!-- Action Button -->
+            @if(auth()->user()->role === 'admin')
+            <div class="ms-md-auto w-100 w-md-auto" style="min-width: fit-content;">
+                <button type="button" class="btn btn-success rounded-pill px-4 py-2 fw-bold shadow-sm d-flex align-items-center gap-2 justify-content-center w-100" style="background: linear-gradient(135deg, #198754 0%, #157347 100%); border: none;" data-bs-toggle="modal" data-bs-target="#createModal">
+                    <i class="fa-solid fa-circle-plus fs-5"></i> {{ __('messages.create_new_licence') }}
+                </button>
+            </div>
+            @endif
+        </form>
     </div>
 
     <div class="card shadow-sm border-0 rounded-4">
