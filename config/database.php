@@ -10,6 +10,7 @@ return [
     | Default Database Connection Name
     |--------------------------------------------------------------------------
     |
+    |
     | Here you may specify which of the database connections below you wish
     | to use as your default connection for database operations. This is
     | the connection which will be utilized unless another connection
@@ -86,7 +87,17 @@ return [
 
         'pgsql' => [
             'driver' => 'pgsql',
-            'url' => env('DB_URL', env('POSTGRES_URL')),
+            'url' => (function () {
+                $url = env('DB_URL', env('POSTGRES_URL'));
+                if ($url && str_contains($url, 'neon.tech') && str_contains($url, 'sslmode=')) {
+                    $host = env('DB_HOST', env('POSTGRES_HOST', ''));
+                    $endpoint = $host ? str_replace('-pooler', '', explode('.', $host)[0]) : '';
+                    if ($endpoint) {
+                        return str_replace('sslmode=require', 'sslmode=require%3Boptions%3Dendpoint%3D' . $endpoint, $url);
+                    }
+                }
+                return $url;
+            })(),
             'host' => env('DB_HOST', env('POSTGRES_HOST', '127.0.0.1')),
             'port' => env('DB_PORT', '5432'),
             'database' => env('DB_DATABASE', env('POSTGRES_DATABASE', 'laravel')),
@@ -97,7 +108,6 @@ return [
             'prefix_indexes' => true,
             'search_path' => 'public',
             'sslmode' => env('DB_SSLMODE', 'prefer'),
-            'options' => 'endpoint=' . str_replace('-pooler', '', explode('.', env('DB_HOST', env('POSTGRES_HOST', '')))[0]),
         ],
 
         'sqlsrv' => [
