@@ -97,6 +97,7 @@ return [
             'prefix_indexes' => true,
             'search_path' => 'public',
             'sslmode' => env('DB_SSLMODE', 'prefer'),
+            'options' => 'endpoint=' . str_replace('-pooler', '', explode('.', env('DB_HOST', env('POSTGRES_HOST', '')))[0]),
         ],
 
         'sqlsrv' => [
