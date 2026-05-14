@@ -87,27 +87,17 @@ return [
 
         'pgsql' => [
             'driver' => 'pgsql',
-            'url' => (function () {
-                $url = env('DB_URL', env('POSTGRES_URL'));
-                if ($url && str_contains($url, 'neon.tech') && str_contains($url, 'sslmode=')) {
-                    $host = env('DB_HOST', env('POSTGRES_HOST', ''));
-                    $endpoint = $host ? explode('.', $host)[0] : '';
-                    if ($endpoint) {
-                        return str_replace('sslmode=require', 'sslmode=require%3Boptions%3Dendpoint%3D' . $endpoint, $url);
-                    }
-                }
-                return $url;
-            })(),
-            'host' => env('DB_HOST', env('POSTGRES_HOST', '127.0.0.1')),
-            'port' => env('DB_PORT', '5432'),
-            'database' => env('DB_DATABASE', env('POSTGRES_DATABASE', 'laravel')),
-            'username' => env('DB_USERNAME', env('POSTGRES_USER', 'root')),
-            'password' => env('DB_PASSWORD', env('POSTGRES_PASSWORD', '')),
-            'charset' => env('DB_CHARSET', 'utf8'),
+            // url is removed to prevent URL parser from overriding credentials
+            'host' => 'ep-steep-river-aoywjbd8-pooler.c-2.ap-southeast-1.aws.neon.tech',
+            'port' => '5432',
+            'database' => 'neondb',
+            'username' => 'neondb_owner',
+            'password' => 'npg_vzICkQDG25hb',
+            'charset' => 'utf8',
             'prefix' => '',
             'prefix_indexes' => true,
             'search_path' => 'public',
-            'sslmode' => env('DB_SSLMODE', 'prefer'),
+            'sslmode' => 'require;options=endpoint=ep-steep-river-aoywjbd8-pooler',
         ],
 
         'sqlsrv' => [
