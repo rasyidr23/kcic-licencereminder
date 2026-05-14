@@ -87,17 +87,17 @@ return [
 
         'pgsql' => [
             'driver' => 'pgsql',
-            // url is removed to prevent URL parser from overriding credentials
-            'host' => 'ep-steep-river-aoywjbd8-pooler.c-2.ap-southeast-1.aws.neon.tech',
-            'port' => '5432',
-            'database' => 'neondb',
-            'username' => 'neondb_owner',
-            'password' => 'npg_vzICkQDG25hb',
-            'charset' => 'utf8',
+            // url is explicitly omitted so Laravel doesn't override below variables
+            'host' => env('POSTGRES_HOST', env('DB_HOST', '127.0.0.1')),
+            'port' => env('POSTGRES_PORT', env('DB_PORT', '5432')),
+            'database' => env('POSTGRES_DATABASE', env('DB_DATABASE', 'forge')),
+            'username' => env('POSTGRES_USER', env('DB_USERNAME', 'forge')),
+            'password' => env('POSTGRES_PASSWORD', env('DB_PASSWORD', '')),
+            'charset' => env('DB_CHARSET', 'utf8'),
             'prefix' => '',
             'prefix_indexes' => true,
             'search_path' => 'public',
-            'sslmode' => 'require;options=endpoint=ep-steep-river-aoywjbd8-pooler',
+            'sslmode' => env('DB_SSLMODE', 'prefer') . (str_contains(env('POSTGRES_HOST', env('DB_HOST', '')), 'neon.tech') ? ';options=endpoint=' . explode('.', env('POSTGRES_HOST', env('DB_HOST', '')))[0] : ''),
         ],
 
         'sqlsrv' => [
