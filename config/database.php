@@ -91,7 +91,7 @@ return [
                 $url = env('DB_URL', env('POSTGRES_URL'));
                 if ($url && str_contains($url, 'neon.tech') && str_contains($url, 'sslmode=')) {
                     $host = env('DB_HOST', env('POSTGRES_HOST', ''));
-                    $endpoint = $host ? str_replace('-pooler', '', explode('.', $host)[0]) : '';
+                    $endpoint = $host ? explode('.', $host)[0] : '';
                     if ($endpoint) {
                         return str_replace('sslmode=require', 'sslmode=require%3Boptions%3Dendpoint%3D' . $endpoint, $url);
                     }
