@@ -98,6 +98,9 @@ return [
             'prefix_indexes' => true,
             'search_path' => 'public',
             'sslmode' => env('DB_SSLMODE', 'prefer') . (str_contains(env('POSTGRES_HOST', env('DB_HOST', '')), 'neon.tech') ? ';options=endpoint=' . explode('.', env('POSTGRES_HOST', env('DB_HOST', '')))[0] : ''),
+            'options' => [
+                \PDO::ATTR_PERSISTENT => true,
+            ],
         ],
 
         'sqlsrv' => [
