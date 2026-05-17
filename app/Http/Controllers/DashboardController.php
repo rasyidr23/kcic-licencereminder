@@ -31,14 +31,12 @@ class DashboardController extends Controller
         $inactiveCount = $stats['inactive_count'] ?? 0;
 
         // 3. Get Top 10 Licences Expiring Soon (or already expired recently)
-        $expiringSoonLicences = \Illuminate\Support\Facades\Cache::remember('dashboard_expiring', 600, function () use ($today) {
-            return Licence::where('licence_type', 'Subscription')
-                ->whereNotNull('period_end')
-                ->orderBy('period_end', 'asc')
-                ->whereDate('period_end', '>=', $today->copy()->subDays(30))
-                ->take(10)
-                ->get();
-        });
+        $expiringSoonLicences = Licence::where('licence_type', 'Subscription')
+            ->whereNotNull('period_end')
+            ->orderBy('period_end', 'asc')
+            ->whereDate('period_end', '>=', $today->copy()->subDays(30))
+            ->take(10)
+            ->get();
 
         return view('dashboard', compact(
             'subscriptionCount',
