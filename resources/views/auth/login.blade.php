@@ -129,11 +129,11 @@
             @csrf
             <div class="mb-3">
                 <label for="email" class="form-label">Email Address</label>
-                <input type="email" class="form-control" id="email" name="email" value="{{ old('email') }}" required autofocus placeholder="admin@kcic.co.id">
+                <input type="email" class="form-control" id="email" name="email" value="{{ old('email') }}" required autofocus placeholder="place email here">
             </div>
             <div class="mb-4">
                 <label for="password" class="form-label">Password</label>
-                <input type="password" class="form-control" id="password" name="password" required placeholder="••••••••">
+                <input type="password" class="form-control" id="password" name="password" required placeholder="place password here">
             </div>
             <div class="mb-3 form-check">
                 <input type="checkbox" class="form-check-input" id="remember" name="remember">
