@@ -13,8 +13,8 @@ Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 
 // Public Webhook (No Auth)
 Route::get('/webhook/trigger-reminders', function (\Illuminate\Http\Request $request) {
-    $secret = env('CRON_SECRET', 'KCICRahasia2026!');
-    if ($request->query('token') !== $secret) {
+    $secret = env('CRON_SECRET');
+    if (!$secret || $request->query('token') !== $secret) {
         return response()->json(['error' => 'Unauthorized'], 401);
     }
     \Illuminate\Support\Facades\Artisan::call('app:send-licence-reminders');

@@ -76,7 +76,7 @@ class LicenceController extends Controller
             'description' => 'nullable|string',
         ]);
 
-        $data = $request->all();
+        $data = $request->only(['name', 'vendor_name', 'period_start', 'period_end', 'licence_type', 'reminder_days', 'description']);
         if ($data['licence_type'] === 'Perpetual') {
             $data['period_end'] = null;
             $data['reminder_days'] = null;
@@ -123,7 +123,7 @@ class LicenceController extends Controller
             'description' => 'nullable|string',
         ]);
 
-        $data = $request->all();
+        $data = $request->only(['name', 'vendor_name', 'period_start', 'period_end', 'licence_type', 'reminder_days', 'description']);
         if ($data['licence_type'] === 'Perpetual') {
             $data['period_end'] = null;
             $data['reminder_days'] = null;
