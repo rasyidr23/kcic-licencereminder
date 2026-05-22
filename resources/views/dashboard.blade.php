@@ -111,7 +111,7 @@
                     backgroundColor: ['#198754', '#dc3545'], // Success Green, Danger Red
                     hoverBackgroundColor: ['#157347', '#c82333'],
                     borderWidth: 0,
-                    hoverOffset: 4
+                    hoverOffset: 30
                 }]
             },
             options: {
@@ -137,7 +137,7 @@
                     backgroundColor: ['#0d6efd', '#ffc107'], // Primary Blue, Warning Yellow
                     hoverBackgroundColor: ['#0b5ed7', '#e0a800'],
                     borderWidth: 0,
-                    hoverOffset: 4
+                    hoverOffset: 30
                 }]
             },
             options: {
