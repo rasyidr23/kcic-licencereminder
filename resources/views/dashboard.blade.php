@@ -115,6 +115,9 @@
                 }]
             },
             options: {
+                layout: {
+                    padding: 30
+                },
                 responsive: true,
                 plugins: {
                     legend: {
@@ -141,6 +144,9 @@
                 }]
             },
             options: {
+                layout: {
+                    padding: 30
+                },
                 responsive: true,
                 plugins: {
                     legend: {
